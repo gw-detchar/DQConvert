@@ -10,7 +10,7 @@ sudo python setup.py install
 
 ## Description: 
 The main purpose of this script is to access ```.gwf``` files, retrieve data quality flag information 
-- and output the information to 4 ```.dat``` files.
+and output the information to 4 ```.dat``` files.
 
 ### Usage:
 If the data quality flag file is ```K-K1_C-1245460544-32.gwf```, with data quality flag information written in channel: 
