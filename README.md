@@ -7,12 +7,12 @@
  
 
 ### Usage:
-#### If the data quality flag file is K-K1_C-1245460544-32.gwf, with data quality flag information written in channel: K1:DET-DQ_STATE_VECTOR
+#### If the data quality flag file is K-K1_C-1245460544-32.gwf, with data quality flag information written in channel: K1:DET-DQ_STATE_VECTOR, use the following command:
 
-##### DQConvert -gwf K-K1_C-1245460544-32.gwf -ch K1:DET-DQ_STATE_VECTOR -SR 16 -DCf CAT
+#####                  DQConvert -gwf K-K1_C-1245460544-32.gwf -ch K1:DET-DQ_STATE_VECTOR -SR 16 -DCf CAT
 
 #### for multiplie files, e.g. four consecutive files: K-K1_C-1245460544-32.gwf, K-K1_C-1245460576-32.gwf K-K1_C-1245460608-32.gwf K-K1_C-1245460640-32.gwf, 
-#### with data quality flag information written in channel: K1:DET-DQ_STATE_VECTOR
+with data quality flag information written in channel: K1:DET-DQ_STATE_VECTOR
 
 ##### DQConvert -gwf K-K1_C-1245460{544-640}-32.gwf -ch K1:DET-DQ_STATE_VECTOR -SR 16 -DCf CAT
 
