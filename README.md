@@ -9,12 +9,12 @@
 ### Usage:
 #### If the data quality flag file is K-K1_C-1245460544-32.gwf, with data quality flag information written in channel: K1:DET-DQ_STATE_VECTOR
 
-#### DQConvert -gwf K-K1_C-1245460544-32.gwf -ch K1:DET-DQ_STATE_VECTOR -SR 16 -DCf CAT
+##### DQConvert -gwf K-K1_C-1245460544-32.gwf -ch K1:DET-DQ_STATE_VECTOR -SR 16 -DCf CAT
 
 #### for multiplie files, e.g. four consecutive files: K-K1_C-1245460544-32.gwf, K-K1_C-1245460576-32.gwf K-K1_C-1245460608-32.gwf K-K1_C-1245460640-32.gwf, 
 #### with data quality flag information written in channel: K1:DET-DQ_STATE_VECTOR
 
-#### DQConvert -gwf K-K1_C-1245460{544-640}-32.gwf -ch K1:DET-DQ_STATE_VECTOR -SR 16 -DCf CAT
+##### DQConvert -gwf K-K1_C-1245460{544-640}-32.gwf -ch K1:DET-DQ_STATE_VECTOR -SR 16 -DCf CAT
 
 #### -gwf: a string for the name(s) of the .gwf files whose data quality flag information is to be read and written into .dat files.
 ####         If analysing a single .gwf file is desired, the -gwf string should just be the name of the .gwf file including the extension.
