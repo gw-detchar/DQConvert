@@ -10,9 +10,9 @@ Mervyn Chan 2019
 """Importing Necessary Modules"""
 
 from gwpy import timeseries
-import matplotlib
-matplotlib.use('Qt4Agg')
-import matplotlib.pyplot as plt
+#import matplotlib
+#matplotlib.use('Qt4Agg')
+#import matplotlib.pyplot as plt
 import numpy as np
 import argparse
 import re
@@ -108,7 +108,8 @@ def wdcf(DQfname, cat_gpst):
     for i in range(len(cat_gpst) / 2):
         
         f.write("%s\t%s\n"%(cat_gpst[2 * i], cat_gpst[2 * i + 1]))
-    
+    if cat_gpst != []:
+	f.write('\n')
     f.close()
 
 
@@ -180,10 +181,10 @@ def main():
     dt = 1.0 / SR
 
     """The path and names for saving data category flags. """
-    DQfname_for_CAT1 = ''.join([inputs.DCf, '1', '.dat'])
-    DQfname_for_CAT2 = ''.join([inputs.DCf, '2', '.dat'])
-    DQfname_for_CAT3 = ''.join([inputs.DCf, '3', '.dat'])
-    DQfname_for_CAT4 = ''.join([inputs.DCf, '4', '.dat'])
+    DQfname_for_CAT1 = ''.join([inputs.DCf, '1', '.in'])
+    DQfname_for_CAT2 = ''.join([inputs.DCf, '2', '.in'])
+    DQfname_for_CAT3 = ''.join([inputs.DCf, '3', '.in'])
+    DQfname_for_CAT4 = ''.join([inputs.DCf, '4', '.in'])
 
     """List used to save the GPS time at which the data is not usable because of issus that belongs to a certain category."""
     CAT1_GPST = []
@@ -246,7 +247,7 @@ def main():
             Convert data quality flag from deximal to binaries"""
             binaries = bin(int(bitdq[j]))[2:].zfill(16)         
 
-            binaries = bin(int(0)).zfill(16)
+            #binaries = bin(int(0)).zfill(16)
             #if j == 65:
             #    binaries = bin(int(65535)).zfill(16)
 
@@ -261,7 +262,7 @@ def main():
                 #print(CAT1_GPST)    
             #print(ts[65], ts[110], ts[200], ts[235] )
             """If there is any zero in the binary, it means the data is affected."""
-            temp = [x for x, y in enumerate(binaries) if y == '0']
+            temp = [x for x, y in enumerate(reversed(binaries)) if y == '0']
 
             """Check if there is any issue from category 1"""
             common = checkdq(CAT1, temp)
@@ -281,10 +282,15 @@ def main():
             """Check if there is any issue from category 4"""
             common = checkdq(CAT4, temp)  
 
-            CAT4_switch, CAT4_GPST = markdq(common, CAT4_switch, CAT4_GPST, ts, j, i, No_of_gwf_files * length)  
+            CAT4_switch, CAT4_GPST = markdq(common, CAT4_switch, CAT4_GPST, ts, j, i, No_of_gwf_files * length)
+
+    #if CAT1_GPST !=[]:
     wdcf(DQfname_for_CAT1, CAT1_GPST)    
+    #if CAT2_GPST !=[]:
     wdcf(DQfname_for_CAT2, CAT2_GPST)    
+    #if CAT3_GPST !=[]:
     wdcf(DQfname_for_CAT3, CAT3_GPST)    
+    #if CAT4_GPST !=[]:    
     wdcf(DQfname_for_CAT4, CAT4_GPST)        
 
 
